@@ -1,7 +1,6 @@
 /**
 */
 #import "viewLogin.h"
-
 #import "UserDefaults.h"
 
 @implementation viewLogin
@@ -37,11 +36,11 @@
 {
     CGRect rc = [UIScreen mainScreen].applicationFrame;
     self.view = [[[UIView alloc] init] autorelease];
-    self.view.frame = CGRectMake(0.f, 0.f, rc.size.width, rc.size.height);
+    self.view.frame = CGRectMake(0.f, 20.f, rc.size.width, rc.size.height);
     self.view.backgroundColor = [UIColor colorWithRed:0.4f green:0.4f blue:0.4f alpha:1.f];
     
     self.labelDesc = [[[UILabel alloc] init] autorelease];
-    self.labelDesc.text = @"さあ、ログインだ。";
+    self.labelDesc.text = @"go Vine GO";
     self.labelDesc.font = [UIFont boldSystemFontOfSize:20.f];
     self.labelDesc.textColor = [UIColor whiteColor];
     [self.labelDesc sizeToFit];
@@ -66,7 +65,7 @@
     if( [[NSUserDefaults standardUserDefaults] stringForKey:kUserDefaultMailAddress] ) {
         self.textfieldMail.text = [[NSUserDefaults standardUserDefaults] stringForKey:kUserDefaultMailAddress];
     }
-    self.textfieldMail.placeholder = @"メールアドレス 半角へ英数小文字";
+    self.textfieldMail.placeholder = @"your MailAddress";
     [self.textfieldMail setReturnKeyType:UIReturnKeyDone];
     self.textfieldMail.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
     [self.textfieldMail addTarget:self action:@selector(EndOnExit:) forControlEvents:UIControlEventEditingDidEndOnExit];
@@ -81,7 +80,7 @@
     if( [[NSUserDefaults standardUserDefaults] stringForKey:kUserDefaultPassWord] ) {
         self.textfieldPass.text = [[NSUserDefaults standardUserDefaults] stringForKey:kUserDefaultPassWord];
     }
-    self.textfieldPass.placeholder = @"パスワード 半角へ英数小文字";
+    self.textfieldPass.placeholder = @"Password";
     [self.textfieldPass setReturnKeyType:UIReturnKeyDone];
     self.textfieldPass.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
     [self.textfieldPass addTarget:self action:@selector(EndOnExit:) forControlEvents:UIControlEventEditingDidEndOnExit];
