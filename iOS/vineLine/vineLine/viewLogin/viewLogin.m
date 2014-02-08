@@ -112,11 +112,13 @@
  */
 - (void)tapLogin:(UITapGestureRecognizer*)sender
 {
-    [[NSUserDefaults standardUserDefaults] setObject:self.textfieldMail.text forKey:kUserDefaultMailAddress];
-    [[NSUserDefaults standardUserDefaults] setObject:self.textfieldPass.text forKey:kUserDefaultPassWord];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-    
-    NSLog(@"tapLogin");
+    if ([self.delegate respondsToSelector:@selector(didTapLogin)]) {
+        [[NSUserDefaults standardUserDefaults] setObject:self.textfieldMail.text forKey:kUserDefaultMailAddress];
+        [[NSUserDefaults standardUserDefaults] setObject:self.textfieldPass.text forKey:kUserDefaultPassWord];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        
+        [self.delegate didTapLogin];
+    }
 }
 
 /**
