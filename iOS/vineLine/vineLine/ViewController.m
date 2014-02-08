@@ -8,16 +8,15 @@
 
 #import "ViewController.h"
 
-@interface ViewController ()
-
-@end
-
 @implementation ViewController
+
+@synthesize viewLogin = _viewLogin;
 
 /**
  */
 -(void) terminate
 {
+    self.viewLogin = nil;
 }
 
 -(void) dealloc
@@ -29,6 +28,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.viewLogin = [[[viewLogin alloc] init] autorelease];
+    [self.view addSubview:self.viewLogin.view];
+    
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
