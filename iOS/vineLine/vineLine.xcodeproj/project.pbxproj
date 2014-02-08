@@ -32,6 +32,7 @@
 		4F30EFF018A6022600DD3079 /* AFURLRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F30EFE518A6022600DD3079 /* AFURLRequestSerialization.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		4F30EFF118A6022600DD3079 /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F30EFE718A6022600DD3079 /* AFURLResponseSerialization.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		4F30EFF218A6022600DD3079 /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F30EFE918A6022600DD3079 /* AFURLSessionManager.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		4F30EFF618A616E800DD3079 /* dataInstance.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F30EFF518A616E800DD3079 /* dataInstance.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,6 +91,8 @@
 		4F30EFE718A6022600DD3079 /* AFURLResponseSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLResponseSerialization.m; sourceTree = "<group>"; };
 		4F30EFE818A6022600DD3079 /* AFURLSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLSessionManager.h; sourceTree = "<group>"; };
 		4F30EFE918A6022600DD3079 /* AFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManager.m; sourceTree = "<group>"; };
+		4F30EFF418A616E800DD3079 /* dataInstance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dataInstance.h; sourceTree = "<group>"; };
+		4F30EFF518A616E800DD3079 /* dataInstance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dataInstance.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,6 +152,7 @@
 		4F14A20618A5B0ED00EBB457 /* vineLine */ = {
 			isa = PBXGroup;
 			children = (
+				4F30EFF318A616E800DD3079 /* dataInstance */,
 				4F30EFD518A6022500DD3079 /* Lib */,
 				4F30EFCF18A5CFCD00DD3079 /* performblock */,
 				4F30EFCA18A5C3DB00DD3079 /* definition */,
@@ -271,6 +275,15 @@
 			path = AFNetworking;
 			sourceTree = "<group>";
 		};
+		4F30EFF318A616E800DD3079 /* dataInstance */ = {
+			isa = PBXGroup;
+			children = (
+				4F30EFF418A616E800DD3079 /* dataInstance.h */,
+				4F30EFF518A616E800DD3079 /* dataInstance.m */,
+			);
+			path = dataInstance;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -378,6 +391,7 @@
 				4F30EFEF18A6022600DD3079 /* AFURLConnectionOperation.m in Sources */,
 				4F30EFEC18A6022600DD3079 /* AFHTTPSessionManager.m in Sources */,
 				4F30EFF018A6022600DD3079 /* AFURLRequestSerialization.m in Sources */,
+				4F30EFF618A616E800DD3079 /* dataInstance.m in Sources */,
 				4F14A21118A5B0ED00EBB457 /* AppDelegate.m in Sources */,
 				4F30EFC818A5B93D00DD3079 /* viewLogin.m in Sources */,
 				4F14A20D18A5B0ED00EBB457 /* main.m in Sources */,
