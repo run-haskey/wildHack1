@@ -20,6 +20,8 @@
 		4F14A22518A5B0ED00EBB457 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F14A20418A5B0ED00EBB457 /* UIKit.framework */; };
 		4F14A22D18A5B0ED00EBB457 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4F14A22B18A5B0ED00EBB457 /* InfoPlist.strings */; };
 		4F14A22F18A5B0ED00EBB457 /* vineLineTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F14A22E18A5B0ED00EBB457 /* vineLineTests.m */; };
+		4F30EFC818A5B93D00DD3079 /* viewLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F30EFC418A5B93D00DD3079 /* viewLogin.m */; };
+		4F30EFC918A5B93D00DD3079 /* viewTimeline.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F30EFC718A5B93D00DD3079 /* viewTimeline.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +53,11 @@
 		4F14A22A18A5B0ED00EBB457 /* vineLineTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "vineLineTests-Info.plist"; sourceTree = "<group>"; };
 		4F14A22C18A5B0ED00EBB457 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		4F14A22E18A5B0ED00EBB457 /* vineLineTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = vineLineTests.m; sourceTree = "<group>"; };
+		4F30EFC318A5B93D00DD3079 /* viewLogin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = viewLogin.h; sourceTree = "<group>"; };
+		4F30EFC418A5B93D00DD3079 /* viewLogin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = viewLogin.m; sourceTree = "<group>"; };
+		4F30EFC618A5B93D00DD3079 /* viewTimeline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = viewTimeline.h; sourceTree = "<group>"; };
+		4F30EFC718A5B93D00DD3079 /* viewTimeline.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = viewTimeline.m; sourceTree = "<group>"; };
+		4F30EFCE18A5C4B800DD3079 /* UserDefaults.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserDefaults.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +117,9 @@
 		4F14A20618A5B0ED00EBB457 /* vineLine */ = {
 			isa = PBXGroup;
 			children = (
+				4F30EFCA18A5C3DB00DD3079 /* definition */,
+				4F30EFC218A5B93D00DD3079 /* viewLogin */,
+				4F30EFC518A5B93D00DD3079 /* viewTimeline */,
 				4F14A20F18A5B0ED00EBB457 /* AppDelegate.h */,
 				4F14A21018A5B0ED00EBB457 /* AppDelegate.m */,
 				4F14A21818A5B0ED00EBB457 /* ViewController.h */,
@@ -147,6 +157,32 @@
 				4F14A22B18A5B0ED00EBB457 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		4F30EFC218A5B93D00DD3079 /* viewLogin */ = {
+			isa = PBXGroup;
+			children = (
+				4F30EFC318A5B93D00DD3079 /* viewLogin.h */,
+				4F30EFC418A5B93D00DD3079 /* viewLogin.m */,
+			);
+			path = viewLogin;
+			sourceTree = "<group>";
+		};
+		4F30EFC518A5B93D00DD3079 /* viewTimeline */ = {
+			isa = PBXGroup;
+			children = (
+				4F30EFC618A5B93D00DD3079 /* viewTimeline.h */,
+				4F30EFC718A5B93D00DD3079 /* viewTimeline.m */,
+			);
+			path = viewTimeline;
+			sourceTree = "<group>";
+		};
+		4F30EFCA18A5C3DB00DD3079 /* definition */ = {
+			isa = PBXGroup;
+			children = (
+				4F30EFCE18A5C4B800DD3079 /* UserDefaults.h */,
+			);
+			path = definition;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -245,8 +281,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F30EFC918A5B93D00DD3079 /* viewTimeline.m in Sources */,
 				4F14A21A18A5B0ED00EBB457 /* ViewController.m in Sources */,
 				4F14A21118A5B0ED00EBB457 /* AppDelegate.m in Sources */,
+				4F30EFC818A5B93D00DD3079 /* viewLogin.m in Sources */,
 				4F14A20D18A5B0ED00EBB457 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -454,6 +492,7 @@
 				4F14A23418A5B0ED00EBB457 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4F14A23518A5B0ED00EBB457 /* Build configuration list for PBXNativeTarget "vineLineTests" */ = {
 			isa = XCConfigurationList;
@@ -462,6 +501,7 @@
 				4F14A23718A5B0ED00EBB457 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

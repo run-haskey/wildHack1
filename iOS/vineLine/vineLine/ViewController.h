@@ -7,8 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "viewLogin.h"
+#import "viewTimeline.h"
 
 @interface ViewController : UIViewController
+{
+}
+@property (nonatomic, retain) viewLogin* viewLogin;
+
 
 -(void) dealloc;
 @end
