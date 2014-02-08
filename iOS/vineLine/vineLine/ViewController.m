@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "AFNetworking.h"
 #import "performblock.h"
 
 @implementation ViewController
@@ -60,9 +61,28 @@
 
 /**
  */
+-(void) apiLogin
+{
+    AFHTTPRequestOperationManager *manager = [[AFHTTPRequestOperationManager manager] autorelease];
+    [manager GET:@"http://itunes.apple.com/lookup"
+      parameters:@{@"id":@"333903271"}
+         success:^(AFHTTPRequestOperation *operation, id responseObject) {
+             // OK
+             NSLog(@"responseObject: %@", responseObject);
+         }
+         failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+             // NG
+             NSLog(@"Error: %@", error);
+         }];
+}
+
+/**
+ */
 -(void) didTapLogin
 {
     NSLog(@"didTapLogin..");
+    
+    [self apiLogin];
     
     //(仮) とりあえずだす
     [self.indicator setHidden:NO];
