@@ -32,6 +32,8 @@
 
 - (void)viewDidLoad
 {
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    
     [super viewDidLoad];
     
     self.viewLogin = [[[viewLogin alloc] init] autorelease];
@@ -61,57 +63,40 @@
 
 /**
  */
--(void) apiLogin
+-(void) didStartLogin
 {
-    AFHTTPRequestOperationManager *manager = [[AFHTTPRequestOperationManager manager] autorelease];
-    [manager GET:@"http://itunes.apple.com/lookup"
-      parameters:@{@"id":@"333903271"}
-         success:^(AFHTTPRequestOperation *operation, id responseObject) {
-             // OK
-             NSLog(@"responseObject: %@", responseObject);
-         }
-         failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-             // NG
-             NSLog(@"Error: %@", error);
-         }];
+    [self.indicator setHidden:NO];
+    [self.indicator startAnimating];
+    [self.view bringSubviewToFront:self.indicator];
 }
 
 /**
  */
--(void) didTapLogin
+-(void) didSuccessLogin
 {
     NSLog(@"didTapLogin..");
     
-    [self apiLogin];
+    //
+    [self.indicator stopAnimating];
+    [self.indicator setHidden:YES];
     
-    //(仮) とりあえずだす
-    [self.indicator setHidden:NO];
-    [self.indicator startAnimating];
-    [self.view bringSubviewToFront:self.indicator];
+    [self.view bringSubviewToFront:self.viewTimeline.view];
     
-    //(仮) 通信した事にして(画面上)完了したら次の画面へ行く
-    [self performBlock:^{
-        [self.indicator stopAnimating];
-        [self.indicator setHidden:YES];
-        
-        [self.view bringSubviewToFront:self.viewTimeline.view];
-        
-        self.viewTimeline.view.alpha = 0.f;
-        self.viewLogin.view.alpha = 1.f;
-        
-        [self.viewLogin.view setHidden:NO];
-        [self.viewTimeline.view setHidden:NO];
-        
-        [UIView animateWithDuration:0.5f
-                         animations:^{
-                             self.viewLogin.view.alpha = 0.f;
-                             self.viewTimeline.view.alpha = 1.f;
-                         }
-                         completion:^(BOOL finished){
-                             [self.viewLogin.view setHidden:YES];
-                         }];
-        
-    } afterDelay:2.5f];
+    self.viewTimeline.view.alpha = 0.f;
+    self.viewLogin.view.alpha = 1.f;
+    
+    [self.viewLogin.view setHidden:NO];
+    [self.viewTimeline.view setHidden:NO];
+    
+    [UIView animateWithDuration:0.5f
+                     animations:^{
+                         self.viewLogin.view.alpha = 0.f;
+                         self.viewTimeline.view.alpha = 1.f;
+                     }
+                     completion:^(BOOL finished){
+                         [self.viewTimeline apiGetTimeline];
+                         [self.viewLogin.view setHidden:YES];
+                     }];
 }
 
 /**

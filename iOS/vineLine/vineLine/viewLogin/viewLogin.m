@@ -1,7 +1,10 @@
 /**
 */
 #import "viewLogin.h"
+
+#import "AFNetworking.h"
 #import "UserDefaults.h"
+#import "dataInstance.h"
 
 @implementation viewLogin
 
@@ -88,7 +91,7 @@
     
     CGSize sizeButton = CGSizeMake(80.f, 80.f);
     self.buttonLogin = [[[UIButton alloc] init] autorelease];
-    self.buttonLogin.frame = CGRectMake((self.view.frame.size.width-sizeButton.width)*0.5f, self.textfieldPass.frame.origin.y+self.textfieldPass.frame.size.height+30.f, sizeButton.width, sizeButton.height);
+    self.buttonLogin.frame = CGRectMake((self.view.frame.size.width-sizeButton.width)*0.5f, self.view.frame.size.height-sizeButton.height-40.f, sizeButton.width, sizeButton.height);
     self.buttonLogin.backgroundColor = [UIColor clearColor];
     self.buttonLogin.titleLabel.font = [UIFont boldSystemFontOfSize:18.f];
     [self.buttonLogin setTitle:@"Login" forState:UIControlStateNormal];
@@ -109,14 +112,57 @@
 
 /**
  */
+-(void) apiLogin
+{
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager POST:@"https://api.vineapp.com/users/authenticate"
+      parameters:@{@"username":self.textfieldMail.text,@"password":self.textfieldPass.text}
+         success:^(AFHTTPRequestOperation *operation, id responseObject) {
+             // OK
+             NSLog(@"responseObject: %@", responseObject);
+             if ([self.delegate respondsToSelector:@selector(didSuccessLogin)]) {
+                 // ログイン成功したらアカウント情報をアプリ内に保持するå
+                 [[NSUserDefaults standardUserDefaults] setObject:self.textfieldMail.text forKey:kUserDefaultMailAddress];
+                 [[NSUserDefaults standardUserDefaults] setObject:self.textfieldPass.text forKey:kUserDefaultPassWord];
+                 [[NSUserDefaults standardUserDefaults] synchronize];
+                 
+                 [DataInstance sharedManager].account.hashKey = [[responseObject objectForKey:@"data"] objectForKey:@"key"];
+                 [DataInstance sharedManager].account.userID = [[responseObject objectForKey:@"data"] objectForKey:@"userId"];
+                 [DataInstance sharedManager].account.userName = [[responseObject objectForKey:@"data"] objectForKey:@"username"];
+                 
+                 [self.delegate didSuccessLogin];
+             }
+         }
+         failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+             // NG
+             NSLog(@"Error: %@", error);
+         }];
+}
+
+/**
+ */
 - (void)tapLogin:(UITapGestureRecognizer*)sender
 {
-    if ([self.delegate respondsToSelector:@selector(didTapLogin)]) {
-        [[NSUserDefaults standardUserDefaults] setObject:self.textfieldMail.text forKey:kUserDefaultMailAddress];
-        [[NSUserDefaults standardUserDefaults] setObject:self.textfieldPass.text forKey:kUserDefaultPassWord];
-        [[NSUserDefaults standardUserDefaults] synchronize];
+    BOOL isResult = false;
+    if( self.textfieldMail.text && self.textfieldPass ) {
+        if( ![self.textfieldMail.text isEqualToString:@""] && ![self.textfieldPass.text isEqualToString:@""] ) {
+            isResult = true;
+        }
+    }
+    
+    if( isResult ) {
+        if ([self.delegate respondsToSelector:@selector(didStartLogin)]) {
+            [self.delegate didStartLogin];
+        }
         
-        [self.delegate didTapLogin];
+        [self.textfieldMail resignFirstResponder];
+        [self.textfieldPass resignFirstResponder];
+        
+        [self apiLogin];
+    } else {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"エラー" message:@"入力情報が正しくありません"
+                                  delegate:self cancelButtonTitle:@"確認" otherButtonTitles:nil];
+        [alert show];
     }
 }
 

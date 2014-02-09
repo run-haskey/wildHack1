@@ -27,6 +27,8 @@
 -(id) init;
 -(void) dealloc;
 
+-(void) apiGetTimeline;
+
 @end
 
 #endif

@@ -1,7 +1,8 @@
 /**
  */
 #import "viewTimeline.h"
-
+#import "AFNetworking.h"
+#import "dataInstance.h"
 
 @implementation viewTimeline
 
@@ -79,6 +80,28 @@
  */
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
+}
+
+/**
+ */
+-(void) apiGetTimeline
+{
+    AccountData* account = [DataInstance sharedManager].account;
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager GET:@"https://api.vineapp.com/timelines/global"
+       parameters:@{@"vine-session-id":account.hashKey}
+          success:^(AFHTTPRequestOperation *operation, id responseObject) {
+              // OK
+              NSLog(@"responseObject: %@", responseObject);
+          }
+          failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+              // NG
+              NSLog(@"Error: %@", error);
+              UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"エラー" message:[error localizedDescription]
+                                                             delegate:self cancelButtonTitle:@"確認" otherButtonTitles:nil];
+              [alert show];
+          }];
 }
 
 @end

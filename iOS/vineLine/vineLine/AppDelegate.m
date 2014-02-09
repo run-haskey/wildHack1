@@ -15,6 +15,10 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    UIWindow *background = [[UIWindow alloc] initWithFrame: CGRectMake(0, 0,self.window.frame.size.width, 20)];
+    background.backgroundColor = [UIColor blackColor];
+    [background setHidden:NO];
+    
     NSURLCache *sharedCache = [[NSURLCache alloc] initWithMemoryCapacity:0 diskCapacity:0 diskPath:nil];
     [NSURLCache setSharedURLCache:sharedCache];
     [sharedCache release];

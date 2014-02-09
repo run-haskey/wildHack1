@@ -7,7 +7,8 @@
 
 @protocol LoginViewDelegate <NSObject>
 
--(void) didTapLogin;
+-(void) didStartLogin;
+-(void) didSuccessLogin;
 
 @end
 
